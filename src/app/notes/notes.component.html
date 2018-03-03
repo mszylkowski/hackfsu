@@ -4,7 +4,7 @@
       <h1>{{currClass.code}}: {{currClass.name}}</h1>
     </div>
     <div class="card-notes">
-      <app-title *ngFor="let title of titles" title="title"></app-title>
+      <app-title *ngFor="let title of titles" [title]="title"></app-title>
     </div>
   </div>
 </div>
