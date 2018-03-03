@@ -1,7 +1,9 @@
 <div class="ui container" *ngIf="state === 'found'">
   <div class="notes-card">
-    <div>
-    <a routerLink="/classes"><i class="angle left icon"></i></a>{{currClass.code}}: {{currClass.name}}
+    <div class="card-title">
+      <h1>
+        <a routerLink="/classes" style="color: black"><i class="angle left icon"></i></a>{{currClass.code}}: {{currClass.name}}
+      </h1>
     </div>
   </div>
 </div>

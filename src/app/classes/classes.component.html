@@ -1,9 +1,11 @@
 <div class="ui four column grid container class-container">
   <a *ngFor="let class of classes" class="class-item" [routerLink]="class.code">
-    <h3>{{class.code}}: {{class.name}}</h3>
+    <h1>{{class.code}}</h1>
+    <h3>{{class.name}}</h3>
   </a>
 
-  <a class="class-item" routerLink="/addPage">
-    <h3>Add new class</h3> 
+  <a class="class-item" routerLink="/classes/addPage">
+    <h1><i class="add circle icon"></i></h1>
+    <h3>Add new class</h3>
   </a>
 </div>

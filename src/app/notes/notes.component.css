@@ -7,6 +7,13 @@
     border-radius: 2px;
 }
 
+.card-title {
+    width: 100%;
+    background-color: #FFEB3B;
+    font-size: 3rem;
+    padding: 20px;
+}
+
 .full-screen {
     position: absolute;
     top: 0px;
