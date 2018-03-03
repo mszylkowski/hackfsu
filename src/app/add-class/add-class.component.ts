@@ -7,11 +7,24 @@ import { AngularFireDatabase } from 'angularfire2/database';
   styleUrls: ['./add-class.component.css']
 })
 export class AddClassComponent implements OnInit {
+  class: any = {
+    university: '',
+    code: '',
+    name: '',
+    professor: '',
+    time: '',
+    section: '',
+    semester: ''
+  };
 
   constructor(private db: AngularFireDatabase) {
   }
 
   ngOnInit() {
+  }
+
+  addClass() {
+    this.db.database.ref('classes/' + this.class.classCode).set(this.class);
   }
 
 }

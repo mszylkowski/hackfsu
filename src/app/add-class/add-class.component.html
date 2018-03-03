@@ -10,18 +10,18 @@
     </div>
 
     <div class="field">
-      <label>University</label>
+      <label>Class Code</label>
       <div class="field">
-        <input type="text" placeholder="ClassCode"
-        [(ngModel)]="class.classCode" name="ClassCode" #name="ngModel">
+        <input type="text" placeholder="Class Code"
+        [(ngModel)]="class.code" name="ClassCode" #name="ngModel">
       </div>
     </div>
 
     <div class="field">
-      <label>University</label>
+      <label>Class Name</label>
       <div class="field">
-        <input type="text" placeholder="ClassName"
-        [(ngModel)]="class.className" name="ClassName" #name="ngModel">
+        <input type="text" placeholder="Class Name"
+        [(ngModel)]="class.name" name="ClassName" #name="ngModel">
       </div>
     </div>
 
@@ -44,8 +44,8 @@
     <div class="field">
         <label>Days and Times</label>
         <div class="field">
-          <input type="text" placeholder="daysAndTimes"
-          [(ngModel)]="class.daysAndTimes" name="daysAndTimes" #name="ngModel">
+          <input type="text" placeholder="Days and Times"
+          [(ngModel)]="class.time" name="daysAndTimes" #name="ngModel">
         </div>
     </div>
     
@@ -53,7 +53,6 @@
         <label>Semester</label>
         <div class="field">
             <select class="ui fluid search dropdown" [(ngModel)]="class.semester" name="semester" #name="ngModel">
-              <option value="">Semester</option>
               <option value="1">Spring 2018</option>
               <option value="2">Fall 2017</option>
               <option value="3">Summer 2017</option>
