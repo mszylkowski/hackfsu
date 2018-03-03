@@ -24,7 +24,7 @@ export class AddClassComponent implements OnInit {
   }
 
   addClass() {
-    this.db.database.ref('classes/' + this.class.classCode).set(this.class);
+    this.db.database.ref('classes/' + this.class.code).set(this.class);
   }
 
 }
