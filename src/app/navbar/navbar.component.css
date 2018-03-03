@@ -14,12 +14,18 @@ nav {
     align-items: center;
 }
 
-nav div {
+nav div.ui.container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     height: 42px;
+}
+
+@media (max-width: 767px) {
+    div.ui.container {
+        width: 100% !important;
+    }
 }
 
 .logo {

@@ -2,11 +2,12 @@
   <form class="ui form form-card">
     <h4 class="ui dividing header">New Class Information</h4>
     <div class="field">
-        <label>University</label>
-        <div class="field">
-          <input type="text" placeholder="University"
-          [(ngModel)]="class.university" name="University" #name="ngModel">
-        </div>
+      <label>Semester</label>
+      <div class="field">
+        <select class="ui fluid search dropdown" [(ngModel)]="class.university" name="university">
+          <option *ngFor="let uni of universities" value="uni">{{uni}}</option>
+        </select>
+      </div>
     </div>
 
     <div class="field">
@@ -50,18 +51,18 @@
     </div>
     
     <div class="field">
-        <label>Semester</label>
-        <div class="field">
-            <select class="ui fluid search dropdown" [(ngModel)]="class.semester" name="semester" #name="ngModel">
-              <option value="1">Spring 2018</option>
-              <option value="2">Fall 2017</option>
-              <option value="3">Summer 2017</option>
-              <option value="4">Spring 2017</option>
-              <option value="5">Fall 2016</option>
-              <option value="6">Summer 2016</option>
-              <option value="7">Spring 2016</option>
-            </select>
-          </div>
+      <label>Semester</label>
+      <div class="field">
+        <select class="ui fluid search dropdown" [(ngModel)]="class.semester" name="semester">
+          <option value="1">Spring 2018</option>
+          <option value="2">Fall 2017</option>
+          <option value="3">Summer 2017</option>
+          <option value="4">Spring 2017</option>
+          <option value="5">Fall 2016</option>
+          <option value="6">Summer 2016</option>
+          <option value="7">Spring 2016</option>
+        </select>
+      </div>
     </div>
 
     <div class="ui button primary" tabindex="0" (click)="addClass()">Add Class</div>

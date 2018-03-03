@@ -1,7 +1,14 @@
 <div class="ui four column grid container class-container">
-  <a *ngFor="let class of classes" class="class-item" [routerLink]="class.code">
+  <div class="ui container searchbar">
+    <div class="ui fluid icon input">
+      <input type="text" placeholder="Search classes" [(ngModel)]="filter" (ngModelChange)="filterChange()" name="filter">
+      <i class="search icon"></i>
+    </div>
+  </div>
+  <a *ngFor="let class of filteredClasses" class="class-item" [routerLink]="class.code">
     <h1>{{class.code}}</h1>
     <h3>{{class.name}}</h3>
+    <h5>{{class.time}}</h5>
   </a>
 
   <a class="class-item" routerLink="/classes/addPage">

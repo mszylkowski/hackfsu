@@ -17,6 +17,9 @@ export class AddClassComponent implements OnInit {
     semester: ''
   };
 
+  universities = ['Georgia Institute of Technology', 'Florida State University', 'University of Georgia', 'University of Florida',
+  'Stanford', 'Harvard'];
+
   constructor(private db: AngularFireDatabase) {
   }
 
