@@ -1,9 +1,10 @@
 <div class="ui container" *ngIf="state === 'found'">
   <div class="notes-card">
     <div class="card-title">
-      <h1>
-        <a routerLink="/classes" style="color: black"><i class="angle left icon"></i></a>{{currClass.code}}: {{currClass.name}}
-      </h1>
+      <h1>{{currClass.code}}: {{currClass.name}}</h1>
+    </div>
+    <div class="card-notes">
+      <app-title *ngFor="let title of titles" title="title"></app-title>
     </div>
   </div>
 </div>

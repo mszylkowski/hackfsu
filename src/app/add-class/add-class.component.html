@@ -5,7 +5,7 @@
       <label>University</label>
       <div class="field">
         <select class="ui fluid search dropdown" [(ngModel)]="class.university" name="university">
-          <option *ngFor="let uni of universities" value="uni">{{uni}}</option>
+          <option *ngFor="let uni of universities" [value]="uni">{{uni}}</option>
         </select>
       </div>
     </div>

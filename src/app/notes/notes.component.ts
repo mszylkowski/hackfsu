@@ -12,11 +12,12 @@ export class NotesComponent implements OnInit {
   classCode: string;
   currClass: any;
   state = 'loading';
+  titles: any[];
 
   constructor(public route: ActivatedRoute, private db: AngularFireDatabase) {
     route.paramMap.subscribe((e) => {
-      this.classCode = e.get('id');
-      db.object('notes/' + this.classCode.toLowerCase()).valueChanges().subscribe((f) => {
+      this.classCode = e.get('id').toUpperCase();
+      db.object('classes/' + this.classCode).valueChanges().subscribe((f) => {
         this.currClass = f;
         console.log(f);
         if (f) {
@@ -24,6 +25,9 @@ export class NotesComponent implements OnInit {
         } else {
           this.state = 'not found';
         }
+      });
+      db.list('notes/' + this.classCode + '/titles').valueChanges().subscribe(titles => {
+        this.titles = titles;
       });
     });
   }

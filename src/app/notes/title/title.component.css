@@ -1,0 +1,7 @@
+.note-item {
+    background-color: white;
+}
+
+.note-item:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
