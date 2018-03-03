@@ -1,4 +1,6 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
+  }
+
+  signInWithGoogle() {
+    this.afAuth.auth.signInWithPopup(
+      new firebase.auth.GoogleAuthProvider()
+    );
   }
 
 }

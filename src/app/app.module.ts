@@ -12,6 +12,7 @@ import { LandingComponent } from './landing/landing.component';
 import { ClassesComponent } from './classes/classes.component';
 import { NotesComponent } from './notes/notes.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const appRoutes: Routes = [
   { path: 'classes', component: ClassesComponent },
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     LandingComponent,
     ClassesComponent,
     NotesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

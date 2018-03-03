@@ -1,4 +1,7 @@
-<router-outlet *ngIf="afAuth.authState | async as user; else showLogin"></router-outlet>
+<div *ngIf="afAuth.authState | async as user; else showLogin">
+  <app-navbar></app-navbar>
+  <router-outlet style="margin-top: 54px"></router-outlet>
+</div>
 <ng-template #showLogin>
   <app-landing ></app-landing>
 </ng-template>
