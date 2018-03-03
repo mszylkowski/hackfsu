@@ -4,49 +4,67 @@
     <div class="field">
         <label>University</label>
         <div class="field">
-          <input type="text" name="class[university]" placeholder="University">
+          <input type="text" placeholder="University"
+          [(ngModel)]="class.university" name="University" #name="ngModel">
         </div>
-      </div>
+    </div>
+
     <div class="field">
-      <label>Class Code</label>
+      <label>University</label>
       <div class="field">
-        <input type="text" name="class[code]" placeholder="Class Code">
-      </div>
-    </div>
-    <div class="field">
-      <label>Class Name</label>
-      <input type="text" name="class[name]" placeholder="Class Name">
-    </div>
-    <div class="field">
-      <label>Professor</label>
-      <input type="text" name="class[professor]" placeholder="Professor">
-    </div>
-    <div class="field">
-      <label>Section</label>
-      <input type="text" name="class[section]" placeholder="Section">
-    </div>
-    
-    <div class="field">
-      <label>Class Days and Times </label>
-      <input type="text" name="class[time]" placeholder="Class Days and Times">
-    </div>
-    
-    <div class="six wide field">
-      <label>Semester</label>
-      <div class="field">
-        <select class="ui fluid search dropdown" name="card[semester]">
-          <option value="">Semester</option>
-          <option value="1">Spring 2018</option>
-          <option value="2">Fall 2017</option>
-          <option value="3">Summer 2017</option>
-          <option value="4">Spring 2017</option>
-          <option value="5">Fall 2016</option>
-          <option value="6">Summer 2016</option>
-          <option value="7">Spring 2016</option>
-        </select>
+        <input type="text" placeholder="ClassCode"
+        [(ngModel)]="class.classCode" name="ClassCode" #name="ngModel">
       </div>
     </div>
 
-    <div class="ui button" tabindex="0">Add Class</div>
+    <div class="field">
+      <label>University</label>
+      <div class="field">
+        <input type="text" placeholder="ClassName"
+        [(ngModel)]="class.className" name="ClassName" #name="ngModel">
+      </div>
+    </div>
+
+    <div class="field">
+        <label>Professor</label>
+        <div class="field">
+          <input type="text" placeholder="Professor"
+          [(ngModel)]="class.professor" name="professor" #name="ngModel">
+        </div>
+      </div>
+
+    <div class="field">
+      <label>Section</label>
+      <div class="field">
+        <input type="text" placeholder="Section"
+        [(ngModel)]="class.section" name="section" #name="ngModel">
+      </div>
+    </div>
+
+    <div class="field">
+        <label>Days and Times</label>
+        <div class="field">
+          <input type="text" placeholder="daysAndTimes"
+          [(ngModel)]="class.daysAndTimes" name="daysAndTimes" #name="ngModel">
+        </div>
+    </div>
+    
+    <div class="field">
+        <label>Semester</label>
+        <div class="field">
+            <select class="ui fluid search dropdown" [(ngModel)]="class.semester" name="semester" #name="ngModel">
+              <option value="">Semester</option>
+              <option value="1">Spring 2018</option>
+              <option value="2">Fall 2017</option>
+              <option value="3">Summer 2017</option>
+              <option value="4">Spring 2017</option>
+              <option value="5">Fall 2016</option>
+              <option value="6">Summer 2016</option>
+              <option value="7">Spring 2016</option>
+            </select>
+          </div>
+    </div>
+
+    <div class="ui button primary" tabindex="0" (click)="addClass()">Add Class</div>
   </form>
 </div>

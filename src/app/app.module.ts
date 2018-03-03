@@ -14,6 +14,7 @@ import { NotesComponent } from './notes/notes.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddClassComponent } from './add-class/add-class.component';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'classes', component: ClassesComponent },
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     AddClassComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     RouterModule.forRoot(
       appRoutes,
