@@ -17,8 +17,10 @@ export class AddClassComponent implements OnInit {
   };
   error = '';
 
-  universities = ['Georgia Institute of Technology', 'Florida State University', 'University of Georgia', 'University of Florida',
-  'Stanford', 'Harvard'];
+  universities = ['Auburn University', 'Boston College', 'Georgia Institute of Technology', 'Florida Atlantic University'
+  , 'Florida State University', 'Harvard University', 'Kennesaw State University',
+  'Massachusetts Institute of Technology', 'Stanford University', 'Temple University', 'Rice University'
+   ];
 
   constructor(private db: AngularFireDatabase) {
   }
