@@ -17,6 +17,7 @@ import { AddClassComponent } from './add-class/add-class.component';
 
 const appRoutes: Routes = [
   { path: 'classes', component: ClassesComponent },
+  { path: 'classes/addPage', component: AddClassComponent },
   { path: 'classes/:id',      component: NotesComponent },
   { path: '',
     redirectTo: '/classes',
