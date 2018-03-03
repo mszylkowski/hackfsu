@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-class',
@@ -22,7 +23,7 @@ export class AddClassComponent implements OnInit {
   'Massachusetts Institute of Technology', 'Stanford University', 'Temple University', 'Rice University'
    ];
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private router: Router) {
   }
 
   ngOnInit() {
@@ -33,18 +34,30 @@ export class AddClassComponent implements OnInit {
   }
 
   addClass() {
+    this.upperCaseCode();
+    if (this.class.code.length < 6 || this.class.code.length > 8) {
+      this.error = 'The Class Code is not valid';
+      return;
+    } else if (this.class.professor.length < 5) {
+      this.error = 'The Professor is not valid';
+      return;
+    } else if (this.class.time.length < 12) {
+      this.error = 'The time is not valid';
+      return;
+    }
     this.db.object('classes/' + this.class.code).valueChanges().subscribe(e => {
       if (e) {
         this.error = 'There already exists a class with that code';
         return;
       }
       this.db.database.ref('classes/' + this.class.code).set(this.class);
+      this.router.navigate(['classes', this.class.code]);
+
     });
   }
 
   upperCaseCode() {
     this.class.code = this.class.code.toUpperCase();
-    console.log(this.class.code);
   }
 
 }

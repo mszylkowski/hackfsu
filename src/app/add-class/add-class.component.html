@@ -37,7 +37,7 @@
     <div class="field">
         <label>Days and Times</label>
         <div class="field">
-          <input type="text" placeholder="Days and Times"
+          <input type="text" placeholder="Days and Times (eg: 'MWF 14:00-15:00, R 10:00-11:30')"
           [(ngModel)]="class.time" name="daysAndTimes" #name="ngModel">
         </div>
     </div>
@@ -46,7 +46,7 @@
       <label>Semester</label>
       <div class="field">
         <select class="ui fluid search dropdown" [(ngModel)]="class.semester" name="semester">
-          <option value="1">Spring 2018</option>
+          <option value="1" selected>Spring 2018</option>
           <option value="2">Fall 2017</option>
           <option value="3">Summer 2017</option>
           <option value="4">Spring 2017</option>
@@ -59,7 +59,6 @@
 
     <div class="ui button primary" tabindex="0" (click)="addClass()">Add Class</div>
     <div class="ui negative message" *ngIf="error !== ''">
-      <i class="close icon"></i>
       <div class="header">
         {{error}}
       </div>
