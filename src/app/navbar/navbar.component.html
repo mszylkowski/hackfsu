@@ -3,7 +3,7 @@
     <span class="left">
       <span class="logo">CrowdNotes</span>
     </span>
-    <span class="right">
+    <span class="right" *ngIf="afAuth.authState | async">
       <button class="ui right labeled icon button yellow" (click)="signOut()">
         <i class="sign out alternate icon"></i>
         Logout

@@ -19,6 +19,7 @@ nav div {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    height: 42px;
 }
 
 .logo {
