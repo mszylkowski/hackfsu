@@ -1,3 +1,10 @@
-<p>
-  classes works!
-</p>
+<div class="ui container class-container">
+  <a *ngFor="let class of classes" class="class-item" [href]="'/classes/' + class.code">
+    <h1>{{class.code}}: {{class.name}}</h1>
+  </a>
+  <div class="class-item">
+  <a href= "">
+   <h1>Add new class</h1> 
+  </a>
+  </div>
+</div>
