@@ -13,9 +13,9 @@ export class AddClassComponent implements OnInit {
     name: '',
     professor: '',
     time: '',
-    section: '',
     semester: ''
   };
+  error = '';
 
   universities = ['Georgia Institute of Technology', 'Florida State University', 'University of Georgia', 'University of Florida',
   'Stanford', 'Harvard'];
@@ -26,8 +26,23 @@ export class AddClassComponent implements OnInit {
   ngOnInit() {
   }
 
+  resetError() {
+    this.error = '';
+  }
+
   addClass() {
-    this.db.database.ref('classes/' + this.class.code).set(this.class);
+    this.db.object('classes/' + this.class.code).valueChanges().subscribe(e => {
+      if (e) {
+        this.error = 'There already exists a class with that code';
+        return;
+      }
+      this.db.database.ref('classes/' + this.class.code).set(this.class);
+    });
+  }
+
+  upperCaseCode() {
+    this.class.code = this.class.code.toUpperCase();
+    console.log(this.class.code);
   }
 
 }

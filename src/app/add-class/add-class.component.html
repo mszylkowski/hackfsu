@@ -14,7 +14,7 @@
       <label>Class Code</label>
       <div class="field">
         <input type="text" placeholder="Class Code"
-        [(ngModel)]="class.code" name="ClassCode" #name="ngModel">
+        [(ngModel)]="class.code" name="ClassCode" #name="ngModel" (ngModelChange)="upperCaseCode()" autocomplete="off">
       </div>
     </div>
 
@@ -58,5 +58,11 @@
     </div>
 
     <div class="ui button primary" tabindex="0" (click)="addClass()">Add Class</div>
+    <div class="ui negative message" *ngIf="error !== ''">
+      <i class="close icon"></i>
+      <div class="header">
+        {{error}}
+      </div>
+    </div>
   </form>
 </div>
