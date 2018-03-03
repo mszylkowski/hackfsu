@@ -1,7 +1,20 @@
 .note-item {
     background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
 .note-item:hover {
     background-color: rgba(0, 0, 0, 0.03);
+}
+
+.action-btn {
+    background-color: #def2f1;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
