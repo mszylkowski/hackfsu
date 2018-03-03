@@ -1,8 +1,8 @@
 <nav>
   <div class="ui container">
-    <span class="left">
+    <a class="left" routerLink="/classes">
       <span class="logo">CrowdNotes</span>
-    </span>
+    </a>
     <span class="right" *ngIf="afAuth.authState | async">
       <button class="ui right labeled icon button yellow" (click)="signOut()">
         <i class="sign out alternate icon"></i>

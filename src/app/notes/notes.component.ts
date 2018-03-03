@@ -1,5 +1,6 @@
+import { AngularFireDatabase } from 'angularfire2/database';
 import { ClassesComponent } from './../classes/classes.component';
-import { Routes, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,10 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotesComponent implements OnInit {
   classCode: string;
+  currClass: any;
+  state = 'loading';
 
-  constructor(public route: ActivatedRoute) {
+  constructor(public route: ActivatedRoute, private db: AngularFireDatabase) {
     route.paramMap.subscribe((e) => {
       this.classCode = e.get('id');
+      db.object('notes/' + this.classCode.toLowerCase()).valueChanges().subscribe((f) => {
+        this.currClass = f;
+        console.log(f);
+        if (f) {
+          this.state = 'found';
+        } else {
+          this.state = 'not found';
+        }
+      });
     });
   }
 

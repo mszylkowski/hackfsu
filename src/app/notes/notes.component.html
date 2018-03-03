@@ -1,5 +1,12 @@
-<div class="ui container">
+<div class="ui container" *ngIf="state === 'found'">
   <div class="notes-card">
-    {{classCode}}
+    <div>
+    <a routerLink="/classes"><i class="angle left icon"></i></a>{{currClass.code}}: {{currClass.name}}
+    </div>
   </div>
+</div>
+<div class="full-screen" *ngIf="state !== 'found'">
+  <div class="ui active centered inline loader large" *ngIf="state === 'loading'"></div>
+  <img *ngIf="state === 'not found'" style="max-width:80vw;max-height:80vh"
+  src="https://i1.wp.com/fribly.com/wp-content/uploads/2014/02/Free-404-Not-Found-Page-Template.jpg?fit=1280%2C1024&ssl=1" alt="">
 </div>

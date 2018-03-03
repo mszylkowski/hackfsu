@@ -1,9 +1,9 @@
-<div class="ui three column padded grid">
-  <a *ngFor="let class of classes" class="class-item three wide column" [href]="'/classes/' + class.code">
-    <h1>{{class.code}}: {{class.name}}</h1>
+<div class="ui four column grid container class-container">
+  <a *ngFor="let class of classes" class="class-item" [routerLink]="class.code">
+    <h3>{{class.code}}: {{class.name}}</h3>
   </a>
 
-    <a class="class-item" href= "">
-    <h1>Add new class</h1> 
-    </a>
+  <a class="class-item" routerLink="/addPage">
+    <h3>Add new class</h3> 
+  </a>
 </div>
