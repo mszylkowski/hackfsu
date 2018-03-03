@@ -13,6 +13,7 @@ import { ClassesComponent } from './classes/classes.component';
 import { NotesComponent } from './notes/notes.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AddClassComponent } from './add-class/add-class.component';
 
 const appRoutes: Routes = [
   { path: 'classes', component: ClassesComponent },
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     ClassesComponent,
     NotesComponent,
     PageNotFoundComponent,
-    NavbarComponent
+    NavbarComponent,
+    AddClassComponent
   ],
   imports: [
     BrowserModule,
