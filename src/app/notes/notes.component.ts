@@ -29,6 +29,9 @@ export class NotesComponent implements OnInit {
       });
       db.object('notes/' + this.classCode).valueChanges().subscribe(notes => {
         this.notes = [];
+        if (!notes) {
+          return;
+        }
         for (const note of Object.keys(notes)) {
           const starred = notes[note].starred && notes[note].starred[this.afAuth.auth.currentUser.uid];
           this.notes.push({key: note, value: notes[note], starred: starred});
