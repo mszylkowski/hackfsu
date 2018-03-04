@@ -6,6 +6,8 @@
     <div class="card-notes">
       <div class="note-item" *ngFor="let note of notes">
         <h1 *ngIf="note.value.type === 'h1'">{{note.value.content}}</h1>
+        <h2 *ngIf="note.value.type === 'h2'">{{note.value.content}}</h2>
+        <h3 *ngIf="note.value.type === 'h3'">{{note.value.content}}</h3>
         <span class="star-container" (click)="star(note)">
           <i class="star icon" *ngIf="note.value.type==='p' || note.value.type==='li'"
             [class.star-starred]="note.value.starred && note.value.starred[afAuth.auth.currentUser.uid]"></i>

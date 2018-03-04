@@ -57,7 +57,7 @@ export class AddClassComponent implements OnInit {
   }
 
   upperCaseCode() {
-    this.class.code = this.class.code.toUpperCase();
+    this.class.code = this.class.code.toUpperCase().replace(' ', '');
   }
 
 }
