@@ -1,8 +1,9 @@
 .class-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    margin-top: 10px;
-    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 15px;
+    grid-gap: 15px;
+    margin-bottom: 15px;
 }
 
 .class-item {
@@ -10,7 +11,7 @@
     height: 200px;
     transition: all 0.2s ease-in-out;
     color: black;
-    background-color: white;
+    background-color: #feffff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +21,7 @@
 
 .class-item:hover {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-    opacity: 1;
+    background-color: white;
 }
 
 .class-item h3 {
@@ -37,6 +38,7 @@
 
 .class-item:hover h1 {
     font-size: 3rem;
+    color: #2b7a78;
 }
 
 .class-item h5 {
@@ -50,10 +52,10 @@
 }
 
 .ui.fluid.icon.input input {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 .ui.fluid.icon.input i {
-    margin-top: 5px;
+    margin-top: 7px;
 }
 
 input[type='text'] {

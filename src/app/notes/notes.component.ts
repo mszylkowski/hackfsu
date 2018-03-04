@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ClassesComponent } from './../classes/classes.component';
 import { ActivatedRoute } from '@angular/router';
@@ -12,22 +13,29 @@ export class NotesComponent implements OnInit {
   classCode: string;
   currClass: any;
   state = 'loading';
-  titles: any[];
+  currNote = '';
+  notes: any[];
 
-  constructor(public route: ActivatedRoute, private db: AngularFireDatabase) {
+  constructor(public route: ActivatedRoute, private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     route.paramMap.subscribe((e) => {
       this.classCode = e.get('id').toUpperCase();
       db.object('classes/' + this.classCode).valueChanges().subscribe((f) => {
         this.currClass = f;
-        console.log(f);
         if (f) {
           this.state = 'found';
         } else {
           this.state = 'not found';
         }
       });
-      db.list('notes/' + this.classCode + '/titles').valueChanges().subscribe(titles => {
-        this.titles = titles;
+      db.object('notes/' + this.classCode).valueChanges().subscribe(notes => {
+        this.notes = [];
+        if (!notes) {
+          return;
+        }
+        for (const note of Object.keys(notes)) {
+          const starred = notes[note].starred && notes[note].starred[this.afAuth.auth.currentUser.uid];
+          this.notes.push({key: note, value: notes[note], starred: starred});
+        }
       });
     });
   }
@@ -35,4 +43,34 @@ export class NotesComponent implements OnInit {
   ngOnInit() {
   }
 
+  sendNote() {
+    this.currNote = this.currNote.trim();
+    let type = 'p';
+    if (this.currNote.startsWith('###')) {
+      type = 'h3';
+      this.currNote = this.currNote.substr(3);
+    } else if (this.currNote.startsWith('##')) {
+      type = 'h2';
+      this.currNote = this.currNote.substr(2);
+    } else if (this.currNote.startsWith('#')) {
+      type = 'h1';
+      this.currNote = this.currNote.substr(1);
+    } else if (this.currNote.startsWith('.') || this.currNote.startsWith('-')) {
+      type = 'li';
+      this.currNote = this.currNote.substr(1);
+    }
+    this.db.database.ref('notes/' + this.classCode).push({
+      content: this.currNote,
+      type: type
+    });
+    this.currNote = '';
+  }
+
+  star(note) {
+    if (note.starred) {
+      this.db.database.ref('notes/' + this.classCode + '/' + note.key + '/starred/' + this.afAuth.auth.currentUser.uid).set(null);
+    } else {
+      this.db.database.ref('notes/' + this.classCode + '/' + note.key + '/starred/' + this.afAuth.auth.currentUser.uid).set('HI');
+    }
+  }
 }
