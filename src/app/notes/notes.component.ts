@@ -88,7 +88,8 @@ export class NotesComponent implements OnInit, OnDestroy {
       content: this.currNote,
       type: type,
       starred: starred,
-      time: new Date().getTime()
+      time: new Date().getTime(),
+      userID: this.afAuth.auth.currentUser.uid
     });
     this.db.database.ref('writing/' + this.classCode + '/' + this.afAuth.auth.currentUser.uid).set(null);
     this.currNote = '';
