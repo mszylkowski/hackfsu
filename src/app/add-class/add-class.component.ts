@@ -51,7 +51,7 @@ export class AddClassComponent implements OnInit {
         return;
       }
       this.db.database.ref('classes/' + this.class.code).set(this.class);
-      this.db.database.ref('notes/' + this.class.code + '/titles').push({content: 'Course Information'});
+      this.db.database.ref('notes/' + this.class.code).push({content: 'Course Information', type: 'h1'});
       this.router.navigate(['classes', this.class.code]);
     });
   }

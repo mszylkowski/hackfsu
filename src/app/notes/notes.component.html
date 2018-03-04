@@ -4,12 +4,24 @@
       <h1>{{currClass.code}}: {{currClass.name}}</h1>
     </div>
     <div class="card-notes">
-      <app-title *ngFor="let title of titles" [title]="title"></app-title>
+      <div class="note-item" *ngFor="let note of notes">
+        <h1 *ngIf="note.value.type === 'h1'">{{note.value.content}}</h1>
+        <span class="star-container" (click)="star(note)">
+          <i class="star icon" *ngIf="note.value.type==='p' || note.value.type==='li'"
+            [class.star-starred]="note.value.starred && note.value.starred[afAuth.auth.currentUser.uid]"></i>
+        </span>
+        <span *ngIf="note.value.type === 'p'">{{note.value.content}}</span>
+        <span *ngIf="note.value.type === 'li'" style="margin-left: 30px">• {{note.value.content}}</span>
+      </div>
+      <div class="ui fluid action input" style="margin-top: 10px">
+        <input type="text" placeholder="Note" name="currNote" [(ngModel)]="currNote" (keyup.enter)="sendNote()">
+        <div class="ui button teal" (click)="sendNote()">Send</div>
+      </div>
     </div>
   </div>
 </div>
 <div class="full-screen" *ngIf="state !== 'found'">
   <div class="ui active centered inline loader large" *ngIf="state === 'loading'"></div>
   <img *ngIf="state === 'not found'" style="max-width:80vw;max-height:80vh"
-  src="https://i1.wp.com/fribly.com/wp-content/uploads/2014/02/Free-404-Not-Found-Page-Template.jpg?fit=1280%2C1024&ssl=1" alt="">
+  src="https://www.megaleecher.net/sites/default/files/images/storecertificate-error-1.png" alt="">
 </div>
