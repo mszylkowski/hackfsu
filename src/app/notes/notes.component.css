@@ -38,17 +38,17 @@
     margin-bottom: 5px;
 }
 
-.star {
+.star-action {
     color: rgba(0, 0, 0, 0.3);
     transition: all 0.1s ease-in-out;
     cursor: pointer;
 }
 
-.star:hover {
+.star-action:hover {
     transform: scale(1.2, 1.2)
 }
 
-.star:active {
+.star-action:active {
     transform: scale(0.8, 0.8)
 }
 

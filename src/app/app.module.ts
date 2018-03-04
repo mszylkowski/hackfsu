@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddClassComponent } from './add-class/add-class.component';
 import { FormsModule } from '@angular/forms';
+import { ChatComponent } from './chat/chat.component';
 
 const appRoutes: Routes = [
   { path: 'classes', component: ClassesComponent },
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
     NotesComponent,
     PageNotFoundComponent,
     NavbarComponent,
-    AddClassComponent
+    AddClassComponent,
+    ChatComponent
   ],
   imports: [
     FormsModule,

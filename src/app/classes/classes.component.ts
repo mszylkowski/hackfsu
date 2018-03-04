@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-classes',
@@ -11,7 +12,7 @@ export class ClassesComponent implements OnInit {
   filteredClasses: any[];
   filter = '';
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private router: Router) {
     db.list('classes').valueChanges().subscribe((e) => {
       this.classes = e;
       this.filterClasses();
@@ -34,5 +35,11 @@ export class ClassesComponent implements OnInit {
 
   filterChange() {
     this.filterClasses();
+  }
+
+  goToClass() {
+    if (this.filteredClasses.length === 1) {
+      this.router.navigate(['classes', this.filteredClasses[0].code]);
+    }
   }
 }

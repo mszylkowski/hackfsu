@@ -1,7 +1,8 @@
 <div class="ui four column grid container class-container">
   <div class="ui container searchbar">
     <div class="ui fluid icon input">
-      <input type="text" placeholder="Search classes" [(ngModel)]="filter" (ngModelChange)="filterChange()" name="filter">
+      <input type="text" placeholder="Search classes" [(ngModel)]="filter" (ngModelChange)="filterChange()" name="filter"
+      (keyup.enter)="goToClass()">
       <i class="search icon"></i>
     </div>
   </div>
@@ -12,7 +13,7 @@
   </a>
 
   <a class="class-item addbox" routerLink="/classes/addPage">
-    <h1><i class="add circle icon"></i></h1>
+    <h1><i class="add circle icon" style="color: white"></i></h1>
     <h3>Add new class</h3>
   </a>
 </div>

@@ -1,0 +1,15 @@
+<div class="chat-wrapper" [class.chatClosed]="closed">
+  <div class="chat-header" (click)="toggleChat()">
+    {{currClass.code}}: {{currClass.name}}
+  </div>
+  <div class="chat-body">
+    <div class="chat-bubble" *ngFor="let message of conversation" [class.chat-bubble-other]="message.name !== name">
+      <span class="chat-content"><span style="font-weight:700;color:#17252A">{{message.name}}: </span>{{message.content}}</span>
+      <span class="chat-time">{{message.time | date:'shortTime'}}</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="chat-input">
+    <input type="text" [(ngModel)]="chatInput" name="chatInput" (keyup.enter)="sendChat()" style="width: 100%" placeholder="Message">
+  </div>
+</div>
