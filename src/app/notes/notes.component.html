@@ -11,22 +11,40 @@
       </div>
     </div>
     <div class="card-notes">
+      <div *ngIf="!notes || notes.length === 0">
+        <img src="https://www.oxfordlearning.com/wp-content/uploads/2015/10/icon-tutoring-homework.png">
+      </div>
       <div class="note-item" *ngFor="let note of notes">
         <h1 *ngIf="note.value.type === 'h1'">{{note.value.content}}</h1>
         <h2 *ngIf="note.value.type === 'h2'">{{note.value.content}}</h2>
         <h3 *ngIf="note.value.type === 'h3'">{{note.value.content}}</h3>
         <span *ngIf="filter==='all' || (filter==='star' && note.starred) || (filter==='rec' && note.starred)">
           <span class="star-container" (click)="star(note)">
-            <i class="star icon star-action" *ngIf="note.value.type==='p' || note.value.type==='li'"
+            <i class="star icon star-action" *ngIf="note.value.type.indexOf('h') < 0"
               [class.star-starred]="note.value.starred && note.value.starred[afAuth.auth.currentUser.uid]"></i>
           </span>
           <span *ngIf="note.value.type === 'p'">{{note.value.content}}</span>
-          <span *ngIf="note.value.type === 'li'" style="margin-left: 30px">• {{note.value.content}}</span>
+          <span *ngIf="note.value.type === 'l1'" style="margin-left: 20px">• {{note.value.content}}</span>
+          <span *ngIf="note.value.type === 'l2'" style="margin-left: 40px">○ {{note.value.content}}</span>
+          <span *ngIf="note.value.type === 'l3'" style="margin-left: 60px">	■ {{note.value.content}}</span>
+          <img *ngIf="note.value.type === 'img'" [src]="note.value.content" style="max-width:700px;max-height:300px">
         </span>
       </div>
       <div class="ui fluid action input" style="margin-top: 10px">
         <input type="text" placeholder="Note" name="currNote" [(ngModel)]="currNote" (keyup.enter)="sendNote()" (keyup)="predictType()">
         <div class="ui button teal" (click)="sendNote()">Send {{typePrediction}}</div>
+        <div class="ui button teal icon" (click)="showHelp()"><i class="question mark icon"></i></div>
+      </div>
+      <div *ngIf="helpShowing">
+          <div class="ui icon message">
+              <i class="code icon"></i>
+              <div class="content">
+                <div class="header">
+                  The textbox support various markdown (and custom) styles
+                </div>
+                <p># Header 1<br>## Header 2<br>### Header 3<br>! Image from url<br>- Unordered item<br>-- Unordered item, second indentation<br>-- Unordered item, third indentation</p>
+              </div>
+            </div>
       </div>
       <div *ngIf="writing.length > 0">
         <span>Others writing</span>
@@ -37,7 +55,11 @@
 </div>
 <div class="full-screen" *ngIf="state !== 'found'">
   <div class="ui active centered inline loader large" *ngIf="state === 'loading'"></div>
-  <img *ngIf="state === 'not found'" style="max-width:80vw;max-height:80vh"
-  src="https://www.megaleecher.net/sites/default/files/images/storecertificate-error-1.png" alt="">
+  <div class="page" *ngIf="state === 'not found'">
+    <h1>Uh Oh!</h1>
+    <h2>java.lang.ClassNotFoundException: The class you're looking for hasn't been created yet.
+      <a routerLink="/classes/addPage" style="color:azure">Create?</a></h2>
+    <img src="assets/ghost.jpg" alt="a lil ghost">
+  </div>
 </div>
 <app-chat [currClass]="currClass" *ngIf="currClass"></app-chat>

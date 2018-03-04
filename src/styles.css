@@ -3,11 +3,9 @@ body {
     background-color:black;
     background-image: url("assets/coffeeblur.jpg");
     max-width: 100vw;
+    max-height: 100vh;
     background-size: cover;
     background-position: 0ch;
     background-attachment: fixed;
-
+    height: auto;
 }
-
-
-

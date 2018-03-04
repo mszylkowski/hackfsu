@@ -18,6 +18,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   typePrediction = '';
   writing = [];
   filter = 'all';
+  helpShowing = true;
 
   constructor(public route: ActivatedRoute, private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     route.paramMap.subscribe((e) => {
@@ -55,6 +56,9 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   sendNote() {
     this.currNote = this.currNote.trim();
+    if (this.currNote.length === 0) {
+      return;
+    }
     let type = 'p';
     if (this.currNote.startsWith('###')) {
       type = 'h3';
@@ -65,8 +69,17 @@ export class NotesComponent implements OnInit, OnDestroy {
     } else if (this.currNote.startsWith('#')) {
       type = 'h1';
       this.currNote = this.currNote.substr(1);
-    } else if (this.currNote.startsWith('.') || this.currNote.startsWith('-')) {
-      type = 'li';
+    } else if (this.currNote.startsWith('---')) {
+      type = 'l3';
+      this.currNote = this.currNote.substr(3);
+    } else if (this.currNote.startsWith('--')) {
+      type = 'l2';
+      this.currNote = this.currNote.substr(2);
+    } else if (this.currNote.startsWith('-')) {
+      type = 'l1';
+      this.currNote = this.currNote.substr(1);
+    } else if (this.currNote.startsWith('!')) {
+      type = 'img';
       this.currNote = this.currNote.substr(1);
     }
     const starred = {};
@@ -74,7 +87,8 @@ export class NotesComponent implements OnInit, OnDestroy {
     this.db.database.ref('notes/' + this.classCode).push({
       content: this.currNote,
       type: type,
-      starred: starred
+      starred: starred,
+      time: new Date().getTime()
     });
     this.db.database.ref('writing/' + this.classCode + '/' + this.afAuth.auth.currentUser.uid).set(null);
     this.currNote = '';
@@ -87,8 +101,14 @@ export class NotesComponent implements OnInit, OnDestroy {
       this.typePrediction = 'h2';
     } else if (this.currNote.startsWith('#')) {
       this.typePrediction = 'h1';
-    } else if (this.currNote.startsWith('.') || this.currNote.startsWith('-')) {
-      this.typePrediction = 'li';
+    } else if (this.currNote.startsWith('---')) {
+      this.typePrediction = 'l3';
+    } else if (this.currNote.startsWith('--')) {
+      this.typePrediction = 'l2';
+    } else if (this.currNote.startsWith('-')) {
+      this.typePrediction = 'l1';
+    } else if (this.currNote.startsWith('!')) {
+      this.typePrediction = 'img';
     } else {
       this.typePrediction = 'p';
     }
@@ -112,5 +132,9 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.db.database.ref('writing/' + this.classCode + '/' + this.afAuth.auth.currentUser.uid).set(null);
+  }
+
+  showHelp() {
+    this.helpShowing = !this.helpShowing;
   }
 }

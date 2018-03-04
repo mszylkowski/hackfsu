@@ -1,5 +1,6 @@
 .ui.container {
     padding-top: 20px;
+    padding-bottom: 250px;
 }
 
 .notes-card {
@@ -39,7 +40,7 @@
 }
 
 .star-action {
-    color: rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.1);
     transition: all 0.1s ease-in-out;
     cursor: pointer;
 }
@@ -60,3 +61,43 @@
     width: 20px;
     height: 20px;
 }
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 54px;
+}
+
+.page h1 {
+    color:	white;
+    font-size: 70px;
+    font-weight: bold;
+    font-family:'Abel',verdana,courier,helvetica, serif;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;  
+}
+
+.page h2 {
+    color:	white;
+    font-size: 40px;
+    font-family:'Abel',verdana,courier,helvetica, serif;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-top: 0px;
+    max-width: 60%;
+}
+
+.page img {
+    text-align: center;
+    max-width: 200px;
+    margin:0 auto;
+    float: left;
+}
+

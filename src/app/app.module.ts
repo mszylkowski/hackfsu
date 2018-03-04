@@ -16,16 +16,22 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AddClassComponent } from './add-class/add-class.component';
 import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
+import { ChatScreenComponent } from './chat-screen/chat-screen.component';
 
 const appRoutes: Routes = [
   { path: 'classes', component: ClassesComponent },
   { path: 'classes/addPage', component: AddClassComponent },
   { path: 'classes/:id',      component: NotesComponent },
+  { path: 'chats/:id',      component: ChatScreenComponent },
+  { path: 'not-found', component: PageNotFoundComponent },
   { path: '',
     redirectTo: '/classes',
     pathMatch: 'full'
   },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**',
+    redirectTo: '/not-found',
+    pathMatch: 'full'
+  },
 ];
 
 
@@ -38,7 +44,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     NavbarComponent,
     AddClassComponent,
-    ChatComponent
+    ChatComponent,
+    ChatScreenComponent
   ],
   imports: [
     FormsModule,
