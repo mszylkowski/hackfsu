@@ -10,13 +10,58 @@
     justify-content: center;
     font-size: 1.5rem;
 }
+
 .chat-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 95%;
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
-    height: 95%;
+}
+
+.chat-container {
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    flex: 3;
+}
+
+.chat-selector {
+    height: 100%;
+    flex: 1;
+    border-right: #2b7a78 solid 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.chat-selector a {
+    padding: 10px;
+    border-bottom: black solid 1px;
+    color: black;
+    transition: all 0.1s ease-in-out;
+}
+
+.chat-selector a.chosen {
+    border-left: #2b7a78 solid 5px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.chat-selector a .course-name {
+    transition: all 0.1s ease-in-out;
+}
+
+.chat-selector a:hover .course-name {
+    margin-left: 5px;
+}
+
+.chat-selector a:hover {
+    background-color: white;
+}
+
+.chat-selector-message i {
+    color: #2b7a78;
 }
 
 .chat-header {

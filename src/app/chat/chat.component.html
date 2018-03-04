@@ -1,8 +1,8 @@
 <div class="chat-wrapper" [class.chatClosed]="closed">
   <div class="chat-header" (click)="toggleChat()">
-    {{currClass.code}}: {{currClass.name}}<a style="float:right; color:white" data-tooltip="Open chats in new tab" data-inverted="" data-position="top right" [routerLink]="['/chats', currClass.code]"><i class="window maximize outline icon"></i></a>
+    {{currClass.code}}: {{currClass.name}}<a *ngIf="!closed" style="float:right; color:white" data-tooltip="Open chats in new tab" data-inverted="" data-position="top right" [routerLink]="['/chats', currClass.code]"><i class="window maximize outline icon"></i></a>
   </div>
-  <div class="chat-body">
+  <div class="chat-body" #scrollMe [scrollTop]="scrollMe.scrollHeight">
     <div class="chat-bubble" *ngFor="let message of conversation" [class.chat-bubble-other]="message.name !== name">
       <span class="chat-content"><span style="font-weight:700;color:#17252A">{{message.name}}: </span>{{message.content}}</span>
       <span class="chat-time">{{message.time | date:'shortTime'}}</span>

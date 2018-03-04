@@ -112,7 +112,7 @@ export class NotesComponent implements OnInit, OnDestroy {
     } else {
       this.typePrediction = 'p';
     }
-    if (this.currNote.length < 10) {
+    if (this.currNote.length < 1) {
       this.db.database.ref('writing/' + this.classCode + '/' + this.afAuth.auth.currentUser.uid).set(null);
     } else {
       this.db.database.ref('writing/' + this.classCode + '/' + this.afAuth.auth.currentUser.uid).update({

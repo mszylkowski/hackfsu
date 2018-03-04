@@ -39,6 +39,26 @@
     margin-bottom: 5px;
 }
 
+.note-item i.search {
+    color: rgba(0, 0, 0, 0.05);
+    margin-left: 10px;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.note-item:hover i.search {
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.note-item i.search:hover {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.note-item i.search:active {
+    color: rgba(0, 0, 0, 0.5);
+    transform: scale(0.8, 0.8);
+}
+
 .star-action {
     color: rgba(0, 0, 0, 0.1);
     transition: all 0.1s ease-in-out;

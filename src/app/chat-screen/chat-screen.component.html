@@ -1,21 +1,33 @@
 <div class="page">
   <div class="chat-wrapper ui container" *ngIf="currClass">
-    <div class="chat-header">
-      {{currClass.code}}: {{currClass.name}}
-    </div>
-    <div class="chat-body" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-      <div class="chat-bubble" *ngFor="let message of conversation" [class.chat-bubble-other]="message.name !== name">
-        <span class="chat-content">
-          <div style="font-weight:700;color:#17252A;font-size:0.8rem">
-            <span *ngIf="message.name === currClass.professor" class="ui label black tiny">Instructor</span> {{message.name}}</div>
-          <div>{{message.content}}</div>
+    <div class="chat-selector">
+      <a *ngFor="let course of classes" [routerLink]="['/chats', course]" [class.chosen]="course === classCode">
+        <span style="font-weight:700" class="course-name">{{course}}</span><br>
+        <span *ngIf="messagesMap[course] && messagesMap[course].length > 0" style="font-size:1rem" class="chat-selector-message">
+          <i *ngIf="messagesMap[course][0].name !== afAuth.auth.currentUser.displayName" class="inbox icon"></i>
+          <i *ngIf="messagesMap[course][0].name === afAuth.auth.currentUser.displayName" class="paper plane icon"></i>
+          <span style="font-weight:700">{{messagesMap[course][0].name}}: </span>{{messagesMap[course][0].content}}
         </span>
-        <span class="chat-time">{{message.time | date:'shortTime'}}</span>
-      </div>
+      </a>
     </div>
-    <div class="divider"></div>
-    <div class="chat-input">
-      <input type="text" [(ngModel)]="chatInput" name="chatInput" (keyup.enter)="sendChat()" style="width: 100%" placeholder="Message">
+    <div class="chat-container">
+      <a class="chat-header" [routerLink]="'/classes/'+currClass.code">
+        {{currClass.code}}: {{currClass.name}}
+      </a>
+      <div class="chat-body" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+        <div class="chat-bubble" *ngFor="let message of conversation" [class.chat-bubble-other]="message.name !== name">
+          <span class="chat-content">
+            <div style="font-weight:700;color:#17252A;font-size:1rem">
+              <span *ngIf="message.name === currClass.professor" class="ui label black tiny">Instructor</span> {{message.name}}</div>
+            <div>{{message.content}}</div>
+          </span>
+          <span class="chat-time">{{message.time | date:'shortTime'}}</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="chat-input">
+        <input type="text" [(ngModel)]="chatInput" name="chatInput" (keyup.enter)="sendChat()" style="width: 100%" placeholder="Message">
+      </div>
     </div>
   </div>
 </div>

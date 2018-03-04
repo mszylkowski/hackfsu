@@ -11,28 +11,29 @@
       </div>
     </div>
     <div class="card-notes">
-      <div *ngIf="!notes || notes.length === 0">
+      <div *ngIf="!notes || notes.length === 0" style="text-align:center">
         <img src="https://www.oxfordlearning.com/wp-content/uploads/2015/10/icon-tutoring-homework.png">
+        <h2>Start by writing the first header using markdown: "#Course Information"</h2>
       </div>
       <div class="note-item" *ngFor="let note of notes">
-        <h1 *ngIf="note.value.type === 'h1'">{{note.value.content}}</h1>
-        <h2 *ngIf="note.value.type === 'h2'">{{note.value.content}}</h2>
-        <h3 *ngIf="note.value.type === 'h3'">{{note.value.content}}</h3>
+        <h1 *ngIf="note.value.type === 'h1'">{{note.value.content}}<a [href]="'https://www.google.com/search?q='+note.value.content" data-tooltip="Google Search" data-inverted="" target="_blank"><i class="search icon"></i></a></h1>
+        <h2 *ngIf="note.value.type === 'h2'">{{note.value.content}}<a [href]="'https://www.google.com/search?q='+note.value.content" data-tooltip="Google Search" data-inverted="" target="_blank"><i class="search icon"></i></a></h2>
+        <h3 *ngIf="note.value.type === 'h3'">{{note.value.content}}<a [href]="'https://www.google.com/search?q='+note.value.content" data-tooltip="Google Search" data-inverted="" target="_blank"><i class="search icon"></i></a></h3>
         <span *ngIf="filter==='all' || (filter==='star' && note.starred) || (filter==='rec' && note.starred)">
           <span class="star-container" (click)="star(note)">
             <i class="star icon star-action" *ngIf="note.value.type.indexOf('h') < 0"
               [class.star-starred]="note.value.starred && note.value.starred[afAuth.auth.currentUser.uid]"></i>
           </span>
-          <span *ngIf="note.value.type === 'p'">{{note.value.content}}</span>
-          <span *ngIf="note.value.type === 'l1'" style="margin-left: 20px">• {{note.value.content}}</span>
-          <span *ngIf="note.value.type === 'l2'" style="margin-left: 40px">○ {{note.value.content}}</span>
-          <span *ngIf="note.value.type === 'l3'" style="margin-left: 60px">	■ {{note.value.content}}</span>
+          <span *ngIf="note.value.type === 'p'">{{note.value.content}}<a [href]="'https://www.google.com/search?q='+note.value.content" data-tooltip="Google Search" data-inverted="" target="_blank"><i class="search icon"></i></a></span>
+          <span *ngIf="note.value.type === 'l1'" style="margin-left: 20px">• {{note.value.content}}<a [href]="'https://www.google.com/search?q='+note.value.content" data-tooltip="Google Search" data-inverted="" target="_blank"><i class="search icon"></i></a></span>
+          <span *ngIf="note.value.type === 'l2'" style="margin-left: 40px">○ {{note.value.content}}<a [href]="'https://www.google.com/search?q='+note.value.content" data-tooltip="Google Search" data-inverted="" target="_blank"><i class="search icon"></i></a></span>
+          <span *ngIf="note.value.type === 'l3'" style="margin-left: 60px">	■ {{note.value.content}}<a [href]="'https://www.google.com/search?q='+note.value.content" data-tooltip="Google Search" data-inverted="" target="_blank"><i class="search icon"></i></a></span>
           <img *ngIf="note.value.type === 'img'" [src]="note.value.content" style="max-width:700px;max-height:300px">
         </span>
       </div>
       <div class="ui fluid action input" style="margin-top: 10px">
         <input type="text" placeholder="Note" name="currNote" [(ngModel)]="currNote" (keyup.enter)="sendNote()" (keyup)="predictType()">
-        <div class="ui button teal" (click)="sendNote()">Send {{typePrediction}}</div>
+        <div class="ui button teal" (click)="sendNote()" [class.disabled]="currNote.length === 0">Send {{typePrediction}}</div>
         <div class="ui button teal icon" (click)="showHelp()"><i class="question mark icon"></i></div>
       </div>
       <div *ngIf="helpShowing">
@@ -47,7 +48,7 @@
             </div>
       </div>
       <div *ngIf="writing.length > 0">
-        <span>Others writing</span>
+        <h3 style="margin-bottom:0px;margin-top:10px">Currently writing:</h3>
         <div *ngFor="let write of writing">{{write.content}}</div>
       </div>
     </div>

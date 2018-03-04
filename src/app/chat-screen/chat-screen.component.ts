@@ -15,6 +15,8 @@ export class ChatScreenComponent implements OnInit {
   chatInput = '';
   name = '';
   currClass: any;
+  classes = ['CS2050', 'CS4660', 'MATH1554', 'EAS1600', 'PUBP3214'];
+  messagesMap = {};
 
   constructor(private db: AngularFireDatabase, public afAuth: AngularFireAuth, private route: ActivatedRoute, private router: Router) {
     afAuth.auth.onAuthStateChanged(user => {
@@ -47,10 +49,21 @@ export class ChatScreenComponent implements OnInit {
         this.router.navigate(['not-found']);
       }
     });
+
+    this.connectChats();
   }
 
   toggleChat() {
     this.closed = !this.closed;
+  }
+
+  connectChats() {
+    for (const course of this.classes) {
+      this.db.list('chats/' + course, ref => ref.limitToLast(1)).valueChanges().subscribe(e => {
+        this.messagesMap[course] = e;
+        console.log(this.messagesMap);
+      });
+    }
   }
 
   sendChat() {
